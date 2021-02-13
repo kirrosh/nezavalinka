@@ -52,12 +52,12 @@ function MapLayout({ onClick }: Props) {
     <StyledApp>
       <MapWrapper onClick={() => onClick && onClick(false)}>
         <MapContainer />
-        <Floating
+        {/* <Floating
           onClick={(e) => {
             e.stopPropagation()
             onClick && onClick(true)
           }}
-        />
+        /> */}
         {/* <Cards
           onClick={(e) => {
             e.stopPropagation()

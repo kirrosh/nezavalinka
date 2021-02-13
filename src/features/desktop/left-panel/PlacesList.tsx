@@ -59,7 +59,7 @@ const PlacesList = () => {
     <div>
       <Heading level={1}>{category?.title}</Heading>
       {places?.map((place) => (
-        <PlaceCard place={place} />
+        <PlaceCard place={place} key={place._id} />
       ))}
     </div>
   )

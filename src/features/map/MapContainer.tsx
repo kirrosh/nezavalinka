@@ -8,6 +8,9 @@ import { viewportAtom } from "./mapAtoms"
 import MapMarker from "./MapMarker"
 import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import IPlace from "types/IPlace"
+import { useQueryClient } from "react-query"
+import { useLocation, matchPath } from "react-router-dom"
+import ICategory from "types/ICategory"
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -34,6 +37,18 @@ const TOKEN =
   "pk.eyJ1Ijoia2lycm9zaCIsImEiOiJjazJqMHB6NGcwb2I4M25vMDhoNm12ZjdlIn0.ja_qH1I_OucomT94N2KHWQ"
 
 const MapContainer = () => {
+  const location = useLocation()
+  const match = matchPath<{ categoryId: string }>(location.pathname, {
+    path: "/categories/:categoryId",
+    exact: true,
+    strict: true,
+  })
+  const categoryId = match?.params.categoryId
+  const queryClient = useQueryClient()
+  const category = queryClient.getQueryData<ICategory>([
+    "categories",
+    categoryId,
+  ])
   // const [viewport, setViewport] = useRecoilState(viewportAtom)
   const [viewport, setViewport] = React.useState({
     // width: 800,
@@ -43,7 +58,7 @@ const MapContainer = () => {
     zoom: 4,
   })
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
-  const { data } = usePlacesQuery()
+  const { data } = usePlacesQuery(category?._id)
 
   useEffect(() => {
     const place: IPlace | undefined = data?.find(
@@ -56,7 +71,7 @@ const MapContainer = () => {
         longitude: Number(place.location.lng),
       })
     }
-  }, [id, data])
+  }, [id, data, categoryId])
 
   return (
     <MapWrapper>
