@@ -25,6 +25,16 @@ const Cards = styled.div`
   width: 100%;
 `
 
+const Floating = styled.div`
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-purple);
+`
+
 // const Footer = styled.div`
 //   display: grid;
 //   place-items: center;
@@ -42,6 +52,12 @@ function MapLayout({ onClick }: Props) {
     <StyledApp>
       <MapWrapper onClick={() => onClick && onClick(false)}>
         <MapContainer />
+        <Floating
+          onClick={(e) => {
+            e.stopPropagation()
+            onClick && onClick(true)
+          }}
+        />
         {/* <Cards
           onClick={(e) => {
             e.stopPropagation()
