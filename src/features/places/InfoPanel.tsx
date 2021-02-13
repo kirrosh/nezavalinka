@@ -1,6 +1,6 @@
 import React from "react"
 import { FontWeight, Link, Text } from "styled-typography"
-import IProject from "types/IProject"
+import IPlace from "types/IPlace"
 
 // import { ReactComponent as IntIcon } from "assets/instagram.svg"
 // import { ReactComponent as MapsIcon } from "assets/maps.svg"
@@ -9,7 +9,7 @@ import IProject from "types/IProject"
 import styled from "styled-components/macro"
 
 type InfoProps = {
-  place: IProject
+  place: IPlace
 }
 
 // const Icon = styled(IntIcon)`

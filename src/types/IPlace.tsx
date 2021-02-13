@@ -1,4 +1,4 @@
-type IProject = {
+type IPlace = {
   name: string
   // address?: string
   // fullAddress: string
@@ -28,4 +28,4 @@ type IProject = {
   }[]
 }
 
-export default IProject
+export default IPlace
