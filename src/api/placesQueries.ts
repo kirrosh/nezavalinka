@@ -2,10 +2,10 @@ import Axios from "axios"
 import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import { useQuery, useQueryClient, UseQueryOptions } from "react-query"
 import { useRecoilState } from "recoil"
-import IProject from "types/IProject"
+import IPlace from "types/IPlace"
 
 export const usePlaceQuery = (id?: string | null) => {
-  return useQuery<IProject>(
+  return useQuery<IPlace>(
     ["projects", id],
     async () => {
       const result = await Axios.get(
@@ -26,17 +26,22 @@ export const usePlaceQuery = (id?: string | null) => {
   )
 }
 
-export const usePlacesQuery = (options?: UseQueryOptions<IProject[]>) => {
+export const usePlacesQuery = (
+  categoryId?: string,
+  options?: UseQueryOptions<IPlace[]>
+) => {
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
   const client = useQueryClient()
-  return useQuery<IProject[]>(
-    "projects",
+  return useQuery<IPlace[]>(
+    ["projects", categoryId],
     async () => {
       const result = await Axios.get(
         "https://gkjb8uan.apicdn.sanity.io/v1/data/query/production",
         {
           params: {
-            query: `*[_type == 'project']`,
+            query: categoryId
+              ? `*[_type == 'project' && references('${categoryId}')]`
+              : `*[_type == 'project']`,
           },
         }
       )

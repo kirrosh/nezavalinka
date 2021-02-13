@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil"
 import { viewportAtom } from "./mapAtoms"
 import MapMarker from "./MapMarker"
 import { selectedPlaceIdAtom } from "features/places/placesAtoms"
-import IProject from "types/IProject"
+import IPlace from "types/IPlace"
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -46,8 +46,8 @@ const MapContainer = () => {
   const { data } = usePlacesQuery()
 
   useEffect(() => {
-    const place: IProject | undefined = data?.find(
-      (place: IProject) => place._id === id
+    const place: IPlace | undefined = data?.find(
+      (place: IPlace) => place._id === id
     )
     if (place) {
       setViewport({

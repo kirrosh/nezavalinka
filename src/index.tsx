@@ -8,6 +8,11 @@ import reportWebVitals from "./reportWebVitals"
 import { ThemeProvider } from "styled-components/macro"
 import { ReactQueryDevtools } from "react-query/devtools"
 
+import { createBrowserHistory } from "history"
+import { Router } from "react-router-dom"
+
+const customHistory = createBrowserHistory()
+
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -34,7 +39,9 @@ ReactDOM.render(
       <QueryClientProvider client={queryClient}>
         <GlobalStyles mode="dark" />
         <ThemeProvider theme={{ typography: typographyTheme }}>
-          <App />
+          <Router history={customHistory}>
+            <App />
+          </Router>
         </ThemeProvider>
         {process.env.NODE_ENV !== "production" && (
           <ReactQueryDevtools initialIsOpen={false} />

@@ -6,6 +6,7 @@ import MapLayout from "./MapLayout"
 import { Icon, IconButton } from "rsuite"
 import { Heading } from "styled-typography"
 import DesktopLeftPanel from "features/desktop/left-panel/DesktopLeftPanel"
+import { BrowserRouter as Router, Link, useHistory } from "react-router-dom"
 
 const StyledDesktop = styled.div`
   width: 100%;
@@ -31,12 +32,19 @@ const CloseButtonWrapper = styled.div`
 
 const DesktopLayout = () => {
   const [collapsed, setCollapsed] = useReducer((prev) => !prev, false)
+  let history = useHistory()
+
+  function goHome() {
+    history?.push("/")
+  }
   return (
     <StyledDesktop>
       <ProSidebar collapsed={collapsed} collapsedWidth={"0px"} width={850}>
         <DrawerContent>
           <Menu iconShape="round">
-            <MenuItem icon={<Icon icon="home" />}>Home</MenuItem>
+            <MenuItem icon={<Icon icon="home" />} onClick={goHome}>
+              Home
+            </MenuItem>
             {/* <SubMenu title="Components">
             <MenuItem>Component 1</MenuItem>
             <MenuItem>Component 2</MenuItem>
