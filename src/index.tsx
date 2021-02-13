@@ -32,7 +32,7 @@ ReactDOM.render(
     <RecoilRoot>
       {/* <RecoilPersist /> */}
       <QueryClientProvider client={queryClient}>
-        <GlobalStyles mode="light" />
+        <GlobalStyles mode="dark" />
         <ThemeProvider theme={{ typography: typographyTheme }}>
           <App />
         </ThemeProvider>

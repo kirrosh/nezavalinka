@@ -30,7 +30,7 @@ type Props = {
   height: number
 }
 
-const MainLayout = ({ height }: Props) => {
+const MobileLayout = ({ height }: Props) => {
   const [{ y }, set] = useSpring(() => ({ y: height }))
   const [isOpen, setOpen] = useState(false)
 
@@ -112,4 +112,4 @@ const MainLayout = ({ height }: Props) => {
   )
 }
 
-export default MainLayout
+export default MobileLayout
