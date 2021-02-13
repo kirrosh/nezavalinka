@@ -5,8 +5,8 @@ type IProject = {
   _id: string
   canHelp: string
   searchHelp: string
-  description: any
-  contacts: any
+  description: string
+  contacts: string
   type: "activist" | "project"
   location: {
     _type: "geopoint"
