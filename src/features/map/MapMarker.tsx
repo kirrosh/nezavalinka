@@ -49,7 +49,7 @@ const Pin = styled.div<{ isActive: boolean }>`
   animation-name: ${bounce};
   animation-fill-mode: both;
   animation-duration: 1s;
-
+  cursor: pointer;
   &:after {
     content: "";
     width: 14px;
