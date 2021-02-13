@@ -7,7 +7,7 @@ import { useRecoilState } from "recoil"
 import { viewportAtom } from "./mapAtoms"
 import MapMarker from "./MapMarker"
 import { selectedPlaceIdAtom } from "features/places/placesAtoms"
-import IPlace from "types/IPlace"
+import IProject from "types/IProject"
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -38,22 +38,22 @@ const MapContainer = () => {
   const [viewport, setViewport] = React.useState({
     // width: 800,
     // height: 600,
-    latitude: 37.78,
-    longitude: -122.45,
-    zoom: 14,
+    latitude: 59.93594726398239,
+    longitude: 30.284097034529644,
+    zoom: 4,
   })
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
   const { data } = usePlacesQuery()
 
   useEffect(() => {
-    const place: IPlace | undefined = data?.find(
-      (place: IPlace) => place._id === id
+    const place: IProject | undefined = data?.find(
+      (place: IProject) => place._id === id
     )
     if (place) {
       setViewport({
         ...viewport,
-        latitude: Number(place.location.latitude),
-        longitude: Number(place.location.longitude),
+        latitude: Number(place.location.lat),
+        longitude: Number(place.location.lng),
       })
     }
   }, [id, data])
@@ -73,8 +73,8 @@ const MapContainer = () => {
             return (
               <Marker
                 key={item._id}
-                latitude={Number(item.location?.latitude)}
-                longitude={Number(item.location?.longitude)}
+                latitude={Number(item.location?.lat)}
+                longitude={Number(item.location?.lng)}
               >
                 <MapMarker
                   onClick={() => setId(item._id)}

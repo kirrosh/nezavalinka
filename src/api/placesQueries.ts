@@ -2,14 +2,14 @@ import Axios from "axios"
 import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import { useQuery, useQueryClient, UseQueryOptions } from "react-query"
 import { useRecoilState } from "recoil"
-import IPlace from "types/IPlace"
+import IProject from "types/IProject"
 
 export const usePlaceQuery = (id?: string | null) => {
-  return useQuery<IPlace>(
+  return useQuery<IProject>(
     ["places", id],
     async () => {
       const result = await Axios.get(
-        "https://jx44rc56.apicdn.sanity.io/v1/data/query/production",
+        "https://gkjb8uan.apicdn.sanity.io/v1/data/query/production",
         {
           params: {
             query: `*[_id == '${id}']`,
@@ -26,17 +26,17 @@ export const usePlaceQuery = (id?: string | null) => {
   )
 }
 
-export const usePlacesQuery = (options?: UseQueryOptions<IPlace[]>) => {
+export const usePlacesQuery = (options?: UseQueryOptions<IProject[]>) => {
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
   const client = useQueryClient()
-  return useQuery<IPlace[]>(
+  return useQuery<IProject[]>(
     "places",
     async () => {
       const result = await Axios.get(
-        "https://jx44rc56.apicdn.sanity.io/v1/data/query/production",
+        "https://gkjb8uan.apicdn.sanity.io/v1/data/query/production",
         {
           params: {
-            query: `*[_type == 'place']`,
+            query: `*[_type == 'project']`,
           },
         }
       )

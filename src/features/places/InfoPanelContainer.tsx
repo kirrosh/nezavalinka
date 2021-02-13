@@ -37,7 +37,7 @@ const InfoPanelContainer = ({ isOpen, height }: Props) => {
 
   return (
     <PanelWrapper style={{ height: height - 60 }}>
-      <Title level={2}>{data?.title}</Title>
+      <Title level={2}>{data?.name}</Title>
       <InfoPanel place={data!} />
     </PanelWrapper>
   )
