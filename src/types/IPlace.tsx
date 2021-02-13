@@ -13,6 +13,7 @@ type IPlace = {
     lat: number
     lng: number
   }
+  photoUrl: string
   // title: string
   // location: {
   //   latitude: number | string

@@ -2,6 +2,7 @@ import { usePlacesQuery } from "api/placesQueries"
 import React from "react"
 import { useQueryClient } from "react-query"
 import { matchPath, useLocation } from "react-router-dom"
+import { Panel } from "rsuite"
 import styled from "styled-components/macro"
 import { Heading } from "styled-typography"
 import ICategory from "types/ICategory"
@@ -28,6 +29,18 @@ const StyledPlaceCard = styled.div`
       text-decoration: underline;
     }
   }
+`
+
+const Card = styled(Panel)`
+  .rs-panel-heading {
+    color: var(--color-text-2);
+  }
+`
+
+const Photo = styled.img`
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
 `
 
 const PlaceCard = ({ place }: PlaceCardProps) => {
@@ -59,7 +72,24 @@ const PlacesList = () => {
     <div>
       <Heading level={1}>{category?.title}</Heading>
       {places?.map((place) => (
-        <PlaceCard place={place} key={place._id} />
+        <Panel
+          shaded
+          // bordered
+          bodyFill
+          style={{
+            display: "inline-block",
+            width: "100%",
+            margin: "16px 0 16px 0",
+          }}
+        >
+          <Photo src={place.photoUrl} />
+          <Card header={place.name}>
+            <p>
+              <small>{place.description}</small>
+            </p>
+          </Card>
+        </Panel>
+        // <PlaceCard place={place} key={place._id} />
       ))}
     </div>
   )
