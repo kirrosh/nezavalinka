@@ -39,7 +39,7 @@ const DesktopLayout = () => {
   }
   return (
     <StyledDesktop>
-      <ProSidebar collapsed={collapsed} collapsedWidth={"0px"} width={850}>
+      <ProSidebar collapsed={collapsed} collapsedWidth={"0px"} width={600}>
         <DrawerContent>
           <Menu iconShape="round">
             <MenuItem icon={<Icon icon="home" />} onClick={goHome}>

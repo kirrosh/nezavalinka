@@ -12,7 +12,10 @@ export const usePlaceQuery = (id?: string | null) => {
         "https://gkjb8uan.apicdn.sanity.io/v1/data/query/production",
         {
           params: {
-            query: `*[_id == '${id}']`,
+            query: `*[_id == '${id}']{
+                    ...,
+                    "photoUrl": photo.asset->url
+                  }`,
           },
         }
       )
@@ -40,8 +43,14 @@ export const usePlacesQuery = (
         {
           params: {
             query: categoryId
-              ? `*[_type == 'project' && references('${categoryId}')]`
-              : `*[_type == 'project']`,
+              ? `*[_type == 'project' && references('${categoryId}')]{
+                  ...,
+                  "photoUrl": photo.asset->url
+                }`
+              : `*[_type == 'project']{
+                  ...,
+                  "photoUrl": photo.asset->url
+                }`,
           },
         }
       )
