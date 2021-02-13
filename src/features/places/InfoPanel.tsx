@@ -1,6 +1,6 @@
 import React from "react"
 import { FontWeight, Link, Text } from "styled-typography"
-import IPlace from "types/IPlace"
+import IProject from "types/IProject"
 
 // import { ReactComponent as IntIcon } from "assets/instagram.svg"
 // import { ReactComponent as MapsIcon } from "assets/maps.svg"
@@ -9,7 +9,7 @@ import IPlace from "types/IPlace"
 import styled from "styled-components/macro"
 
 type InfoProps = {
-  place: IPlace
+  place: IProject
 }
 
 // const Icon = styled(IntIcon)`
@@ -38,7 +38,7 @@ const InfoPanel = ({ place }: InfoProps) => {
     <Wrapper>
       {/* <TagListContainer id={place._id} /> */}
       <Text level={4} fontWeight={FontWeight.Light}>
-        {place.address}
+        {place.name}
       </Text>
       {/* {place.markdown && <Markdown markdown={place.markdown} />} */}
       {/* <Icons>
