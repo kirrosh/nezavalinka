@@ -6,7 +6,7 @@ import IProject from "types/IProject"
 
 export const usePlaceQuery = (id?: string | null) => {
   return useQuery<IProject>(
-    ["places", id],
+    ["projects", id],
     async () => {
       const result = await Axios.get(
         "https://gkjb8uan.apicdn.sanity.io/v1/data/query/production",
@@ -30,7 +30,7 @@ export const usePlacesQuery = (options?: UseQueryOptions<IProject[]>) => {
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
   const client = useQueryClient()
   return useQuery<IProject[]>(
-    "places",
+    "projects",
     async () => {
       const result = await Axios.get(
         "https://gkjb8uan.apicdn.sanity.io/v1/data/query/production",
@@ -46,8 +46,8 @@ export const usePlacesQuery = (options?: UseQueryOptions<IProject[]>) => {
       refetchOnWindowFocus: false,
       onSuccess: (results) => {
         results?.map((item) => {
-          client.setQueryData(["places", item._id], () => item)
-          client.setQueryDefaults(["places", item._id], {
+          client.setQueryData(["projects", item._id], () => item)
+          client.setQueryDefaults(["projects", item._id], {
             staleTime: Infinity,
           })
         })
