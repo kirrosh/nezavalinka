@@ -1,11 +1,18 @@
-import MainLayout from "features/layouts/MainLayout"
+import { useCategoriesQuery } from "api/categoriesQuery"
+import DesktopLayout from "features/layouts/DesktopLayout"
+import MobileLayout from "features/layouts/MobileLayout"
 import React, { useEffect, useRef, useState } from "react"
+import { BrowserView, MobileView } from "react-device-detect"
 import styled from "styled-components"
-import logo from "./logo.svg"
+import "rsuite/dist/styles/rsuite-default.css"
 
 const AppWrapper = styled.div`
   height: 100vh;
   width: 100vw;
+  & > div {
+    height: 100%;
+    width: 100%;
+  }
 `
 
 function App() {
@@ -35,7 +42,10 @@ function App() {
   }, [])
   return (
     <AppWrapper ref={wrapperRef} style={{ height }}>
-      {height && <MainLayout height={height} />}
+      <BrowserView>
+        <DesktopLayout />
+      </BrowserView>
+      <MobileView>{height && <MobileLayout height={height} />}</MobileView>
     </AppWrapper>
   )
 }

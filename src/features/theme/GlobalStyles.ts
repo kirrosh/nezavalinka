@@ -39,7 +39,7 @@ const GlobalStyles = createGlobalStyle<{ mode: TMode }>`
     width: 100%;
     margin: 0;
     padding: 0;
-    /* font-family: Inter, Open-Sans, Helvetica, Sans-Serif; */
+    font-family: Inter, Open-Sans, Helvetica, Sans-Serif;
     -webkit-font-smoothing: antialiased;
     background-color: var(--color-bg-1);
 
