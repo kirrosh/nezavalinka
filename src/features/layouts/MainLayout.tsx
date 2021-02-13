@@ -55,6 +55,7 @@ const MainLayout = ({ height }: Props) => {
 
   const onClick = useCallback(
     (isOpen: boolean) => {
+      console.log(isOpen)
       isOpen ? open({ canceled: false }) : close()
     },
     [open, close]
