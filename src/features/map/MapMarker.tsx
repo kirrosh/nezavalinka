@@ -1,3 +1,4 @@
+import IconElement from "features/theme/IconElement"
 import styled, { keyframes } from "styled-components/macro"
 
 const pulsate = keyframes`
@@ -41,8 +42,8 @@ const Pin = styled.div<{ isActive: boolean }>`
   border-radius: 50% 50% 50% 0;
   background: ${({ isActive }) =>
     isActive ? "var(--color-purple)" : "#89849b"};
-  position: absolute;
-  transform: rotate(-45deg);
+  /* position: absolute; */
+  /* transform: rotate(-45deg); */
   left: 50%;
   top: 50%;
   margin: -40px 0px 0px -15px;
@@ -50,7 +51,7 @@ const Pin = styled.div<{ isActive: boolean }>`
   animation-fill-mode: both;
   animation-duration: 1s;
   cursor: pointer;
-  &:after {
+  /* &:after {
     content: "";
     width: 14px;
     height: 14px;
@@ -58,6 +59,23 @@ const Pin = styled.div<{ isActive: boolean }>`
     background: #2f2f2f;
     position: absolute;
     border-radius: 50%;
+  } */
+`
+
+const Marker = styled.div<{ isActive: boolean }>`
+  left: 50%;
+  top: 50%;
+  margin: -40px 0px 0px -15px;
+  animation-name: ${bounce};
+  animation-fill-mode: both;
+  animation-duration: 1s;
+  cursor: pointer;
+  position: absolute;
+
+  color: ${({ isActive }) =>
+    isActive ? "var(--color-purple)" : "var(--color-blue)"};
+  & > * {
+    transform: rotate(45deg);
   }
 `
 
@@ -104,8 +122,11 @@ const MapMarker = ({ onClick, isActive }: Props) => {
   }
   return (
     <Wrapper onClick={handler}>
-      <Pin isActive={isActive} />
-      <Pulse isActive={isActive} />
+      <Marker isActive={isActive}>
+        <IconElement name="marker" size="md" />
+      </Marker>
+      {/* <Pin isActive={isActive} />
+      <Pulse isActive={isActive} /> */}
     </Wrapper>
   )
 }

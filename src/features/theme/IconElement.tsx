@@ -17,8 +17,8 @@ const styles = {
     height: 32px;
   `,
   md: css`
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
   `,
   xs: css`
     width: 8px;
