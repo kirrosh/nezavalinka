@@ -9,7 +9,7 @@ import styled from "styled-components/macro"
 import { Heading, Text } from "styled-typography"
 import ICategory from "types/ICategory"
 import IPlace from "types/IPlace"
-import placeholder from "assets/placeholder.png"
+import placeholder from "assets/images/placeholder.png"
 type PlaceCardProps = {
   place: IPlace
 }
