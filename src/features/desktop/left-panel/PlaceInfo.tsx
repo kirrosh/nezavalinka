@@ -1,13 +1,8 @@
 import { usePlaceQuery } from "api/placesQueries"
-import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import React from "react"
-import { useQueryClient } from "react-query"
-import { Link, matchPath, useLocation } from "react-router-dom"
-import { useRecoilState } from "recoil"
-import { Panel } from "rsuite"
+import { matchPath, useLocation } from "react-router-dom"
 import styled from "styled-components/macro"
 import { Heading, Text } from "styled-typography"
-import ICategory from "types/ICategory"
 import IPlace from "types/IPlace"
 
 const Card = styled.div`
