@@ -64,7 +64,7 @@ const MapContainer = () => {
     const place: IPlace | undefined = data?.find(
       (place: IPlace) => place._id === id
     )
-    if (place) {
+    if (place?.location) {
       setViewport({
         ...viewport,
         latitude: Number(place.location.lat),
