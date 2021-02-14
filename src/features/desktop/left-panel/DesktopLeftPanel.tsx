@@ -11,6 +11,8 @@ import PlacesList, { PlacesListRoute } from "./PlacesList"
 
 const StyledDesktopLeftPanel = styled.div`
   padding: 64px 32px;
+  height: 100vh;
+  overflow-y: auto;
 `
 
 const CategoriesGrid = styled.div`
