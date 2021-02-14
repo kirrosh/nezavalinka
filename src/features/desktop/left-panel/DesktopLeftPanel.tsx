@@ -130,7 +130,7 @@ const DesktopLeftPanel = () => {
               <FilterImage src={Frame2} />
             </LargeCategory>
             <LargeCategory>
-              <Heading level={2}>Переехать в гости</Heading>
+              <Heading level={2}>Приехать в гости</Heading>
               <FilterImage src={Frame3} />
             </LargeCategory>
             <LargeCategory>
