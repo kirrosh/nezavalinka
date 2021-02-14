@@ -103,6 +103,9 @@ const DesktopLeftPanel = () => {
         </Route>
         <Route path="/">
           <Heading label="1">#НЕЗАВАЛИНКА</Heading>
+          <Heading level={4}>
+            Карта влюбленных в деревни и малые города. Найди единомышленников
+          </Heading>
           <CategoriesGrid>
             {data?.map((item) => (
               <ButtonWithText key={item._id}>
