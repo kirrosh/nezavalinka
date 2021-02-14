@@ -11,6 +11,7 @@ import { ReactComponent as backpack } from "./categories/backpack.svg"
 import { ReactComponent as hammer } from "./categories/hammer.svg"
 import { ReactComponent as legacy } from "./categories/legacy.svg"
 import { ReactComponent as woods } from "./categories/woods.svg"
+import { ReactComponent as marker } from "./marker.svg"
 
 const icons = {
   chat,
@@ -25,6 +26,7 @@ const icons = {
   hammer,
   legacy,
   woods,
+  marker,
 }
 
 export default icons
