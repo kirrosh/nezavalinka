@@ -68,7 +68,7 @@ const DesktopLayout = () => {
       <StyledProSidebar
         collapsed={collapsed}
         collapsedWidth={"0px"}
-        width={650}
+        width={830}
       >
         <DrawerContent>
           <StyledMenu iconShape="square">

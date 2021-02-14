@@ -8,6 +8,11 @@ import styled from "styled-components"
 import { Heading, Span } from "styled-typography"
 import PlaceInfo, { PlaceInfoRoute } from "./PlaceInfo"
 import PlacesList, { PlacesListRoute } from "./PlacesList"
+import Frame1 from "assets/filters/Frame1.png"
+import Frame2 from "assets/filters/Frame2.png"
+import Frame3 from "assets/filters/Frame3.png"
+import Frame4 from "assets/filters/Frame4.png"
+import { FilteredPlacesListRoute } from "./FilteredPlacesList"
 
 const StyledDesktopLeftPanel = styled.div`
   padding: 64px 32px;
@@ -21,6 +26,35 @@ const CategoriesGrid = styled.div`
   gap: 16px;
   margin-top: 32px;
 `
+
+// const LargeCategoriesGrid = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: 16px;
+//   margin-top: 32px;
+// `
+
+const LargeCategory = styled.div`
+  background: var(--color-blue);
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+  ${Heading} {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 30px;
+    color: #fff;
+    padding: 16px 0 0 16px;
+    position: absolute;
+  }
+`
+
+const FilterImage = styled.img`
+  background: transparent;
+  border-radius: 16px;
+`
+
 const CategoryButton = styled(IconButton)`
   background-color: var(--color-blue);
   color: #fff;
@@ -64,6 +98,9 @@ const DesktopLeftPanel = () => {
         <Route path="/places/:placeId">
           <PlaceInfoRoute />
         </Route>
+        <Route path="/filter/:filterId">
+          <FilteredPlacesListRoute />
+        </Route>
         <Route path="/">
           <Heading label="1">#НЕЗАВАЛИНКА</Heading>
           <CategoriesGrid>
@@ -77,6 +114,26 @@ const DesktopLeftPanel = () => {
                 </Link>
               </ButtonWithText>
             ))}
+          </CategoriesGrid>
+          <CategoriesGrid>
+            <Link to={`/filter/volunteer`}>
+              <LargeCategory>
+                <Heading level={2}>Стать волонтером</Heading>
+                <FilterImage src={Frame1} />
+              </LargeCategory>
+            </Link>
+            <LargeCategory>
+              <Heading level={2}>Хочу переехать</Heading>
+              <FilterImage src={Frame2} />
+            </LargeCategory>
+            <LargeCategory>
+              <Heading level={2}>Переехать в гости</Heading>
+              <FilterImage src={Frame3} />
+            </LargeCategory>
+            <LargeCategory>
+              <Heading level={2}>Овладеть ремеслом</Heading>
+              <FilterImage src={Frame4} />
+            </LargeCategory>
           </CategoriesGrid>
         </Route>
       </Switch>
