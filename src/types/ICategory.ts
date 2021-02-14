@@ -6,6 +6,8 @@ type ICategory = {
   _updatedAt: string //"2020-12-26T18:02:27Z"
   title: string
   description: string
+  tgChat: string
+  icon: string
 }
 
 export default ICategory
