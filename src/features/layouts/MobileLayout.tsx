@@ -1,7 +1,9 @@
 import InfoPanelContainer from "features/places/InfoPanelContainer"
-import React, { useCallback, useState } from "react"
+import { selectedPlaceIdAtom } from "features/places/placesAtoms"
+import React, { useCallback, useEffect, useState } from "react"
 import { useSpring, animated, config } from "react-spring"
 import { useDrag } from "react-use-gesture"
+import { useRecoilState } from "recoil"
 import styled from "styled-components/macro"
 import MapLayout from "./MapLayout"
 
@@ -60,6 +62,12 @@ const MobileLayout = ({ height }: Props) => {
     },
     [open, close]
   )
+
+  const [id, setId] = useRecoilState(selectedPlaceIdAtom)
+  useEffect(() => {
+    console.log(id)
+    id ? onClick(true) : onClick(false)
+  }, [id])
 
   const bind = useDrag(
     ({ last, vxvy: [, vy], movement: [, my], cancel, canceled }) => {

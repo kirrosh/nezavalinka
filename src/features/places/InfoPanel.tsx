@@ -2,6 +2,7 @@ import React from "react"
 import { FontWeight, Link, Text } from "styled-typography"
 import IPlace from "types/IPlace"
 
+import placeholder from "assets/images/placeholder.png"
 // import { ReactComponent as IntIcon } from "assets/instagram.svg"
 // import { ReactComponent as MapsIcon } from "assets/maps.svg"
 // import TagListContainer from "features/tags/TagListContainer"
@@ -32,14 +33,22 @@ const Wrapper = styled.div`
   position: relative;
   height: 100%;
 `
+const Photo = styled.img`
+  width: 100%;
+  height: 240px;
+  background: #fffafa;
+  box-shadow: 0px 4px 20px rgba(17, 17, 17, 0.33);
+  border-radius: 32px;
+  margin-top: 16px;
+  object-fit: cover;
+`
 
 const InfoPanel = ({ place }: InfoProps) => {
   return (
     <Wrapper>
       {/* <TagListContainer id={place._id} /> */}
-      <Text level={4} fontWeight={FontWeight.Light}>
-        {place.name}
-      </Text>
+
+      <Photo src={place.photoUrl || placeholder} />
       {/* {place.markdown && <Markdown markdown={place.markdown} />} */}
       {/* <Icons>
         {place.inst && (

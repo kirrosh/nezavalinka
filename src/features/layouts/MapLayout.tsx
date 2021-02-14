@@ -1,5 +1,7 @@
 import MapContainer from "features/map/MapContainer"
+import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import React from "react"
+import { useRecoilState } from "recoil"
 import styled from "styled-components"
 // import { Heading } from "styled-typography"
 
@@ -48,9 +50,14 @@ type Props = {
 }
 
 function MapLayout({ onClick }: Props) {
+  const [id, setId] = useRecoilState(selectedPlaceIdAtom)
+  const handler = () => {
+    setId(null)
+    // onClick && onClick(false)
+  }
   return (
     <StyledApp>
-      <MapWrapper onClick={() => onClick && onClick(false)}>
+      <MapWrapper onClick={handler}>
         <MapContainer />
         {/* <Floating
           onClick={(e) => {

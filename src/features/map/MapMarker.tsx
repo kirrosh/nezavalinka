@@ -98,8 +98,12 @@ type Props = {
 }
 
 const MapMarker = ({ onClick, isActive }: Props) => {
+  const handler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation()
+    onClick()
+  }
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper onClick={handler}>
       <Pin isActive={isActive} />
       <Pulse isActive={isActive} />
     </Wrapper>
