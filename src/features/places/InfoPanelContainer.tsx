@@ -12,13 +12,12 @@ type Props = {
 }
 
 const Title = styled(Heading)`
-  height: 60px;
   display: grid;
   place-items: center;
 `
 
 const PanelWrapper = styled.div`
-  padding: 0 16px;
+  padding: 32px;
   .swiper-container {
     height: 100%;
   }
@@ -32,7 +31,6 @@ const CarWrapper = styled.div`
 const InfoPanelContainer = ({ isOpen, height }: Props) => {
   const selectedPlace = useRecoilValue(selectedPlaceIdAtom)
   const { data } = usePlaceQuery(selectedPlace)
-
   if (!data) return null
 
   return (

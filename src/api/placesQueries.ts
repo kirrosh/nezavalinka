@@ -35,8 +35,9 @@ export const usePlacesQuery = (
 ) => {
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
   const client = useQueryClient()
+  const key = categoryId ? ["places", categoryId] : "places"
   return useQuery<IPlace[]>(
-    ["places", categoryId],
+    key,
     async () => {
       const result = await Axios.get(
         "https://gkjb8uan.apicdn.sanity.io/v1/data/query/production",
