@@ -1,15 +1,12 @@
-import React, { useReducer, useState } from "react"
+import React, { useReducer } from "react"
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar"
 import "react-pro-sidebar/dist/css/styles.css"
 import styled from "styled-components/macro"
 import MapLayout from "./MapLayout"
 import { Icon, IconButton } from "rsuite"
-import { Heading } from "styled-typography"
 import DesktopLeftPanel from "features/desktop/left-panel/DesktopLeftPanel"
-import { BrowserRouter as Router, Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import IconElement from "features/theme/IconElement"
-import { viewportAtom } from "features/map/mapAtoms"
-import { useRecoilState } from "recoil"
 
 const StyledDesktop = styled.div`
   width: 100%;
