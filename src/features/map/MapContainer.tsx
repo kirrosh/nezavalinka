@@ -78,7 +78,8 @@ const MapContainer = () => {
       <ReactMapGL
         width="100%"
         height="100%"
-        mapStyle="mapbox://styles/kirrosh/ckidgapbv21jc19n1jou11m39"
+        mapStyle="mapbox://styles/machka2077/ckl3xhvq40vof17p1cab96q7k"
+        // mapStyle="mapbox://styles/kirrosh/ckidgapbv21jc19n1jou11m39"
         {...viewport}
         mapboxApiAccessToken={TOKEN}
         onViewportChange={(nextViewport: any) => setViewport(nextViewport)}

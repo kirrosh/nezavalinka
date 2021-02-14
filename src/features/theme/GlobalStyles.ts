@@ -4,7 +4,7 @@ type TMode = "light" | "dark"
 
 const common = css`
   --color-purple: #8855ff;
-  --color-blue: #008df9;
+  --color-blue: #4565d7;
   --color-red: #dc524c;
   --color-green: #7bb86f;
   --color-yellow: #f8cd76;

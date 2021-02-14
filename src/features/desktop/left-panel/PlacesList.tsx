@@ -1,7 +1,7 @@
 import { usePlacesQuery } from "api/placesQueries"
 import React from "react"
 import { useQueryClient } from "react-query"
-import { matchPath, useLocation } from "react-router-dom"
+import { matchPath, useHistory, useLocation } from "react-router-dom"
 import { Panel } from "rsuite"
 import styled from "styled-components/macro"
 import { Heading } from "styled-typography"
@@ -31,9 +31,12 @@ const StyledPlaceCard = styled.div`
   }
 `
 
-const Card = styled(Panel)`
-  .rs-panel-heading {
-    color: var(--color-text-2);
+const Place = styled.div`
+  cursor: pointer;
+  &:hover {
+    ${Heading} {
+      text-decoration: underline;
+    }
   }
 `
 
@@ -52,9 +55,40 @@ const PlaceCard = ({ place }: PlaceCardProps) => {
   )
 }
 
-type Props = {}
+type Props = {
+  category?: ICategory
+}
 
-const PlacesList = () => {
+const PlacesList = ({ category }: Props) => {
+  const history = useHistory()
+  const onClick = (placeId: string) => {
+    history?.push(`/places/${placeId}`)
+  }
+  const { data: places } = usePlacesQuery(category?._id)
+  return (
+    <div>
+      <Heading level={1}>{category?.title}</Heading>
+      {places?.map((place) => (
+        <Place onClick={() => onClick(place._id)} key={place._id}>
+          <Panel
+            shaded
+            bodyFill
+            style={{
+              display: "inline-block",
+              width: "100%",
+              margin: "16px 0 0 0",
+            }}
+          >
+            <Photo src={place.photoUrl} />
+          </Panel>
+          <Heading level={4}>{place.name}</Heading>
+        </Place>
+      ))}
+    </div>
+  )
+}
+
+export const PlacesListRoute = () => {
   const location = useLocation()
   const match = matchPath<{ categoryId: string }>(location.pathname, {
     path: "/categories/:categoryId",
@@ -66,33 +100,8 @@ const PlacesList = () => {
     "categories",
     match?.params.categoryId,
   ])
-  const { data: places } = usePlacesQuery(category?._id)
 
-  return (
-    <div>
-      <Heading level={1}>{category?.title}</Heading>
-      {places?.map((place) => (
-        <Panel
-          shaded
-          // bordered
-          bodyFill
-          style={{
-            display: "inline-block",
-            width: "100%",
-            margin: "16px 0 16px 0",
-          }}
-        >
-          <Photo src={place.photoUrl} />
-          <Card header={place.name}>
-            <p>
-              <small>{place.description}</small>
-            </p>
-          </Card>
-        </Panel>
-        // <PlaceCard place={place} key={place._id} />
-      ))}
-    </div>
-  )
+  return category ? <PlacesList category={category} /> : null
 }
 
 export default PlacesList
