@@ -9,7 +9,7 @@ import MapMarker from "./MapMarker"
 import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import IPlace from "types/IPlace"
 import { useQueryClient } from "react-query"
-import { useLocation, matchPath } from "react-router-dom"
+import { useLocation, matchPath, useHistory } from "react-router-dom"
 import ICategory from "types/ICategory"
 
 const MapWrapper = styled.div`
@@ -49,13 +49,12 @@ const MapContainer = () => {
     "categories",
     categoryId,
   ])
-  // const [viewport, setViewport] = useRecoilState(viewportAtom)
   const [viewport, setViewport] = React.useState({
     // width: 800,
     // height: 600,
     latitude: 59.93594726398239,
     longitude: 30.284097034529644,
-    zoom: 4,
+    zoom: 2,
   })
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
   const { data } = usePlacesQuery(category?._id)
@@ -72,6 +71,13 @@ const MapContainer = () => {
       })
     }
   }, [id, data, categoryId])
+
+  const history = useHistory()
+
+  const onClick = (placeId: string) => {
+    history?.push(`/places/${placeId}`)
+    setId(placeId)
+  }
 
   return (
     <MapWrapper>
@@ -93,7 +99,7 @@ const MapContainer = () => {
                 longitude={Number(item.location?.lng)}
               >
                 <MapMarker
-                  onClick={() => setId(item._id)}
+                  onClick={() => onClick(item._id)}
                   isActive={item._id === id}
                 />
               </Marker>

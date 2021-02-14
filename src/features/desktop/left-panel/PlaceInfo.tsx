@@ -2,7 +2,7 @@ import { usePlaceQuery } from "api/placesQueries"
 import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import React from "react"
 import { useQueryClient } from "react-query"
-import { matchPath, useLocation } from "react-router-dom"
+import { Link, matchPath, useLocation } from "react-router-dom"
 import { useRecoilState } from "recoil"
 import { Panel } from "rsuite"
 import styled from "styled-components/macro"
@@ -42,6 +42,18 @@ const PlaceInfo = ({ place }: Props) => {
         <Heading level={4}>Описание</Heading>
         <Text>{place.description}</Text>
       </Card>
+      {place.canHelp && (
+        <Card>
+          <Heading level={4}>Помогу</Heading>
+          <Text>{place.canHelp}</Text>
+        </Card>
+      )}
+      {place.searchHelp && (
+        <Card>
+          <Heading level={4}>Ищу</Heading>
+          <Text>{place.searchHelp}</Text>
+        </Card>
+      )}
       {place.photoUrl && <Photo src={place.photoUrl} />}
       {place.contacts && (
         <Card>

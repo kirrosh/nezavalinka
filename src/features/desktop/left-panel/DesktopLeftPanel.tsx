@@ -42,20 +42,19 @@ const ButtonWithText = styled.div`
   }
   &:hover {
     cursor: pointer;
-    ${Span} {
-      text-decoration: underline;
-    }
   }
   a {
     color: var(--color-text-1);
     font-weight: 500;
     font-size: 18px;
     line-height: 23px;
+    text-decoration: none;
   }
 `
 
 const DesktopLeftPanel = () => {
   const { data } = useCategoriesQuery()
+
   return (
     <StyledDesktopLeftPanel>
       <Switch>

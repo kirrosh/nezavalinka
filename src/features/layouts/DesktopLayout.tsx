@@ -8,6 +8,8 @@ import { Heading } from "styled-typography"
 import DesktopLeftPanel from "features/desktop/left-panel/DesktopLeftPanel"
 import { BrowserRouter as Router, Link, useHistory } from "react-router-dom"
 import IconElement from "features/theme/IconElement"
+import { viewportAtom } from "features/map/mapAtoms"
+import { useRecoilState } from "recoil"
 
 const StyledDesktop = styled.div`
   width: 100%;
@@ -61,7 +63,6 @@ const StyledMenuItem = styled(MenuItem)`
 const DesktopLayout = () => {
   const [collapsed, setCollapsed] = useReducer((prev) => !prev, false)
   let history = useHistory()
-
   function goHome() {
     history?.push("/")
   }
@@ -70,7 +71,7 @@ const DesktopLayout = () => {
       <StyledProSidebar
         collapsed={collapsed}
         collapsedWidth={"0px"}
-        width={600}
+        width={650}
       >
         <DrawerContent>
           <StyledMenu iconShape="square">

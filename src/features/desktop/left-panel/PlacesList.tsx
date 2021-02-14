@@ -2,14 +2,14 @@ import { usePlacesQuery } from "api/placesQueries"
 import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import React from "react"
 import { useQueryClient } from "react-query"
-import { matchPath, useHistory, useLocation } from "react-router-dom"
+import { Link, matchPath, useHistory, useLocation } from "react-router-dom"
 import { useRecoilState } from "recoil"
-import { Panel } from "rsuite"
+import { Button, Panel } from "rsuite"
 import styled from "styled-components/macro"
-import { Heading } from "styled-typography"
+import { Heading, Text } from "styled-typography"
 import ICategory from "types/ICategory"
 import IPlace from "types/IPlace"
-
+import placeholder from "assets/placeholder.png"
 type PlaceCardProps = {
   place: IPlace
 }
@@ -21,15 +21,19 @@ const PlaceImage = styled.div`
   background-color: var(--color-bg-4);
 `
 
-const StyledPlaceCard = styled.div`
-  display: grid;
-  gap: 8px;
-  margin: 16px 0;
-  cursor: pointer;
-  &:hover {
-    ${Heading} {
-      text-decoration: underline;
-    }
+const Chat = styled.div`
+  background: var(--color-blue);
+  padding: 12px 16px;
+  margin-bottom: 32px;
+  ${Heading} {
+    color: #fff;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+  }
+  a {
+    margin-top: 8px;
   }
 `
 
@@ -51,15 +55,6 @@ const List = styled.div`
   overflow: auto;
 `
 
-const PlaceCard = ({ place }: PlaceCardProps) => {
-  return (
-    <StyledPlaceCard>
-      <PlaceImage />
-      <Heading level={3}>{place.name}</Heading>
-    </StyledPlaceCard>
-  )
-}
-
 type Props = {
   category?: ICategory
 }
@@ -75,6 +70,21 @@ const PlacesList = ({ category }: Props) => {
   const { data: places } = usePlacesQuery(category?._id)
   return (
     <div>
+      {category?.tgChat && (
+        <Chat>
+          <Heading level={4}>
+            Присоединяйся к тематическому чату
+            <br />
+            <Button
+              appearance="primary"
+              href={category.tgChat}
+              target={"_blank"}
+            >
+              Перейти к чату
+            </Button>
+          </Heading>
+        </Chat>
+      )}
       <Heading level={1}>{category?.title}</Heading>
       <List>
         {places?.map((place) => (
@@ -88,7 +98,7 @@ const PlacesList = ({ category }: Props) => {
                 margin: "16px 0 0 0",
               }}
             >
-              <Photo src={place.photoUrl} />
+              <Photo src={place.photoUrl || placeholder} />
             </Panel>
             <Heading level={4}>{place.name}</Heading>
           </Place>
