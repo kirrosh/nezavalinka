@@ -1,7 +1,9 @@
 import { usePlacesQuery } from "api/placesQueries"
+import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import React from "react"
 import { useQueryClient } from "react-query"
 import { matchPath, useHistory, useLocation } from "react-router-dom"
+import { useRecoilState } from "recoil"
 import { Panel } from "rsuite"
 import styled from "styled-components/macro"
 import { Heading } from "styled-typography"
@@ -45,6 +47,9 @@ const Photo = styled.img`
   height: 240px;
   object-fit: cover;
 `
+const List = styled.div`
+  overflow: auto;
+`
 
 const PlaceCard = ({ place }: PlaceCardProps) => {
   return (
@@ -61,29 +66,34 @@ type Props = {
 
 const PlacesList = ({ category }: Props) => {
   const history = useHistory()
+  const [id, setId] = useRecoilState(selectedPlaceIdAtom)
+
   const onClick = (placeId: string) => {
     history?.push(`/places/${placeId}`)
+    setId(placeId)
   }
   const { data: places } = usePlacesQuery(category?._id)
   return (
     <div>
       <Heading level={1}>{category?.title}</Heading>
-      {places?.map((place) => (
-        <Place onClick={() => onClick(place._id)} key={place._id}>
-          <Panel
-            shaded
-            bodyFill
-            style={{
-              display: "inline-block",
-              width: "100%",
-              margin: "16px 0 0 0",
-            }}
-          >
-            <Photo src={place.photoUrl} />
-          </Panel>
-          <Heading level={4}>{place.name}</Heading>
-        </Place>
-      ))}
+      <List>
+        {places?.map((place) => (
+          <Place onClick={() => onClick(place._id)} key={place._id}>
+            <Panel
+              shaded
+              bodyFill
+              style={{
+                display: "inline-block",
+                width: "100%",
+                margin: "16px 0 0 0",
+              }}
+            >
+              <Photo src={place.photoUrl} />
+            </Panel>
+            <Heading level={4}>{place.name}</Heading>
+          </Place>
+        ))}
+      </List>
     </div>
   )
 }

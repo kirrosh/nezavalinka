@@ -17,8 +17,9 @@ const StyledDesktop = styled.div`
 
 const DrawerContent = styled.div`
   display: grid;
-  grid-template-columns: 64px 1fr;
-  height: 100%;
+  grid-template-columns: 72px 1fr;
+  height: 100vh;
+  overflow: hidden;
 `
 
 const MapWrapper = styled.div`
