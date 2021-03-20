@@ -3,14 +3,12 @@ import { selectedPlaceIdAtom } from "features/places/placesAtoms"
 import React from "react"
 import { useRecoilState } from "recoil"
 import styled from "styled-components"
-// import { Heading } from "styled-typography"
 
 const StyledApp = styled.div`
   height: 100%;
   width: 100%;
   background-color: var(--color-bg-1);
   display: grid;
-  /* grid-template-rows: 1fr 64px; */
 `
 
 const MapWrapper = styled.div`
@@ -37,14 +35,6 @@ const Floating = styled.div`
   background-color: var(--color-purple);
 `
 
-// const Footer = styled.div`
-//   display: grid;
-//   place-items: center;
-//   background-color: var(--color-bg-1);
-//   ${Heading} {
-//     color: var(--color-purple);
-//   }
-// `
 type Props = {
   onClick?: (isOpen: boolean) => void
 }
@@ -53,30 +43,11 @@ function MapLayout({ onClick }: Props) {
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
   const handler = () => {
     setId(null)
-    // onClick && onClick(false)
   }
   return (
     <StyledApp>
       <MapWrapper onClick={handler}>
         <MapContainer />
-        {/* <Floating
-          onClick={(e) => {
-            e.stopPropagation()
-            onClick && onClick(true)
-          }}
-        /> */}
-        {/* <Cards
-          onClick={(e) => {
-            e.stopPropagation()
-          }}
-        >
-          <PlaceCarouselContainer
-            childType="card"
-            openPanel={() => {
-              onClick && onClick(true)
-            }}
-          />
-        </Cards> */}
       </MapWrapper>
       {/* <Footer>
         <Heading level={4}>Калининград</Heading>

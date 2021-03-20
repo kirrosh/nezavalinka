@@ -86,6 +86,17 @@ const ButtonWithText = styled.div`
   }
 `
 
+const WideButtonWrapper = styled.div`
+  width: 100%;
+  margin-top: 32px;
+
+  & > a {
+    background-color: var(--color-blue);
+    color: #fff;
+    /* width: 100%; */
+  }
+`
+
 const DesktopLeftPanel = () => {
   const { data } = useCategoriesQuery()
 
@@ -138,6 +149,15 @@ const DesktopLeftPanel = () => {
               <FilterImage src={Frame4} />
             </LargeCategory>
           </CategoriesGrid>
+          <WideButtonWrapper>
+            <Button
+              href="http://gorodzagorod.org/nez_form"
+              block
+              target="_blank"
+            >
+              Добавьте меня на карту! &#128512;
+            </Button>
+          </WideButtonWrapper>
         </Route>
       </Switch>
     </StyledDesktopLeftPanel>

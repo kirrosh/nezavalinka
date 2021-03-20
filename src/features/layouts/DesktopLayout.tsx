@@ -88,11 +88,6 @@ const DesktopLayout = () => {
               icon={<IconElement name="geopoint" />}
               onClick={goHome}
             />
-
-            {/* <SubMenu title="Components">
-            <MenuItem>Component 1</MenuItem>
-            <MenuItem>Component 2</MenuItem>
-          </SubMenu> */}
           </StyledMenu>
           <DesktopLeftPanel />
         </DrawerContent>
