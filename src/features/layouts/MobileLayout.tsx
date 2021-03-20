@@ -57,7 +57,6 @@ const MobileLayout = ({ height }: Props) => {
 
   const onClick = useCallback(
     (isOpen: boolean) => {
-      console.log(isOpen)
       isOpen ? open({ canceled: false }) : close()
     },
     [open, close]
@@ -65,7 +64,6 @@ const MobileLayout = ({ height }: Props) => {
 
   const [id, setId] = useRecoilState(selectedPlaceIdAtom)
   useEffect(() => {
-    console.log(id)
     id ? onClick(true) : onClick(false)
   }, [id])
 

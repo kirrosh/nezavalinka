@@ -78,7 +78,6 @@ const MapContainer = () => {
     history?.push(`/places/${placeId}`)
     setId(placeId)
   }
-  console.log(data)
 
   return (
     <MapWrapper>
@@ -92,7 +91,6 @@ const MapContainer = () => {
         onViewportChange={(nextViewport: any) => setViewport(nextViewport)}
       >
         {data?.map((item) => {
-          console.log(item)
           if (item.location)
             return (
               <Marker
