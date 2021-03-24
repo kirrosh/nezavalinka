@@ -1,5 +1,6 @@
 import { usePlaceQuery } from "api/placesQueries"
 import React from "react"
+import Linkify from "react-linkify"
 import { matchPath, useLocation } from "react-router-dom"
 import styled from "styled-components/macro"
 import { Heading, Text } from "styled-typography"
@@ -29,7 +30,7 @@ type Props = {
 
 const PlaceInfo = ({ place }: Props) => {
   return (
-    <div>
+    <Linkify>
       <Card>
         <Heading level={2}>{place.name}</Heading>
       </Card>
@@ -56,7 +57,7 @@ const PlaceInfo = ({ place }: Props) => {
           <Text>{place.contacts}</Text>
         </Card>
       )}
-    </div>
+    </Linkify>
   )
 }
 
